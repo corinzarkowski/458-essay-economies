@@ -1,4 +1,4 @@
-# Elitism in Skiing: An Analysis of the Affordability and Shifting Primary Demographics of Skiing
+# Skiing Elitism: An Analysis on the Affordability and Shifting Primary Demographics of Skiing
 ---
 You are expected to write an essay which analyzes a digital-geography-related project (e.g., web map, smart dashboard, geo-narrative, etc.). You are aiming for no less than 1500 words coalescing around the examined digital-geography project and readings from this quarter.
 
@@ -10,6 +10,7 @@ introduce this digital-geography project, including, but not limited to:
 
 the goal of this project (why this project was made?)
 ### Objective
+My goal in this project is to analyze the relationship between geographic wealth and the success of nearby ski areas in order to assess their influence on each other. My hypothesis is that the presence of ski areas and the nature of their generally isolated locations attracts those with wealth to the area. This creates a feedback loop where the wealthy residents of the area pour money into ski areas, in turn increasing their reputations and building up the wealth of the area. H
 
 the major functions
 list any web map element in use (e.g., scalar bar, north arrow, legend, etc.) if it has.
