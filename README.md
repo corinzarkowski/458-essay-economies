@@ -7,7 +7,7 @@
 ## Overview
 Tyler Hegwood’s web map of United States metropolitan economies exists to highlight both the primary means of economic production and their geographic presences throughout the country. On first glance, the user is visually directed towards his map—due to his use of vibrant colors and omittance of a basemap, his comparison of raw data is aesthetically appealing while also an effective representation of data. Even more important than his map is his sidebar. A panel containing helpful tools and documentation occupies the left third of the screen, allowing the selection of individual industries to compare (he provides the ability to view two at a time), a slider for the year of data in question, and individual numbers and graphs for further insight. Locations on the map are represented by differently sized circles, with larger circles showing greater GDP’s. The end-user is not limited to the information on the sidebar though; while hovering over a location will change the information on the sidebar, Hegwood also provides clickable pop-ups on each and every location. Information on the pop-ups is the same as that on the sidebar, but in a different format. This could be useful for quick, surface level analysis for those not willing to spend extra time sorting through the more in-depth data on the sidebar.
 
-![map.png]
+![Initial view of web map](map.png)
 
 ## Purpose
 The information provided by Hegwood through his web map serves many possible uses through its dimensionality. His leading question, “What makes up local economies across the country?”, is broad to the point of encompassing many other possible insights. While Hegwood clearly intends for his map to be used in cross-location examination, the implementation of detailed statistics, different industries, and the year slider can all be used in tandem for the close analysis of singular locations across industries over time. Of course, Hegwood’s web map carries much more potential than this. A user could easily examine the relative differences in economic growth between two metropolitan areas and their industries with just a quick choice of settings and a turn of the year slider—this airtight functionality and robust feature-set gives the map insane potential for in-depth analysis, saving plentiful time of both information gathering and sorting.
@@ -84,16 +84,16 @@ The client-server relations of this project are reasonably straightforward—all
 ## Design Critique
 While this web app provides robust and detailed tools for both visualizing and analyzing large amounts of data, it is severely lacking in its presentation. One could argue that an aesthetically pleasing design is not necessary in this sort of project, but I would disagree. The color palette and style behind using circles to represent GDP from different sectors is both visually pleasing and effective, but the barebones sidebar layout leaves much to be desired. The text size does not scale, making it nigh unreadable on high resolution monitors, and the app does not support responsive design whatsoever. Data provided in the sidebar is raw with near to no context, and the graph’s axes labels are dark gay on gray—completely unreadable. Even though the circles on the map itself are great for drawing comparison, the lack of legend renders them useless for anything beyond barely preliminary analysis. On the bright side, the dropdown menus for the selection of sectors are both easy to navigate and snappy, even though the labels of each are hard to read on the gray backdrop. The lack of basemap in this web map is interesting. The sheer amount of data and bountiful labels work well to contextualize the map on a broader scale, but someone not familiar with United States geography might suffer from navigation. Since the web map’s source did specify the use of a basemap, one cannot judge the map’s design too much for this though. However, the blue and purple palette for the map circles would be completely impossible to read for those who are colorblind—a glaring accessibility issue.
 
-## PROS AND CONS
-### PROS
+## Pros and Cons
+### Pros
 - Snappy. 
 - Bug free (I consider the lack of basemap a feature, not a bug)
 - Intuitive for data analysis.
 - Pretty design for the map itself.
-### CONS
+### Cons
 - Sidebar design is lacking.
 - Lack of legend makes contextualization of data on the map itself difficult, even if comparison is easy.
 - Color palette on the map may be bad for colorblind people.
 
-## REFLECTION
+## Reflection
 From a social standpoint, this map is reasonably objective and well-made with little bias from its creator. One may argue that this map paints those in rural economies with a negative light, but this is alleviated by the clear transparency of this map’s sole use in analyzing metropolitan areas. It could still affect some uninformed viewers on this issue though, as agricultural GDPs appear low on this map of metropolitan areas due to their naturally rural situation. The massive amount of data and user configurability of this map lowers room for bias and prejudice from the map itself, but potentially acts as a double-edged sword in the hands of a malicious individual with the intent of propagating their agenda. So while this map does not symbolize any social theories itself, due to its clear presentation and configurability one could easily cherry-pick and purposely misinterpret an image from this web map in an attempt to manipulate people less experienced with critical map-reading into disdain for certain populations.
