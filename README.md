@@ -15,7 +15,12 @@ The information provided by Hegwood through his web map serves many possible use
 ## Major functions
 A robust tool such as this web map relies on a multitude of dependencies and backend functions. Hegwood styles the entire site using barebones CSS and html; the bulk of his code is found in the vast use of UI listeners and functions controlling the drawing of the map circles themselves.
 Three primary functions make up the majority of the web app’s composition: updateSymbols, infoWindow, and updateChart. Another large function, drawMap, mostly just takes geoJSON and uses leaflet functions to create the underlying map. The last large function, addUiListeners, makes calls to updateSymbols when sliders or selectors from the sidebar are used.
+
+Code snippets in this section are only representative bits of the function, not the entire thing.
+
 ### updateSymbols
+This function primarily works to assign values to each circle on the map, then takes said values and binds a popup to each circle. It also uses the calcRadius helper function while determining the circle size—a vital piece of the map’s visualizations.
+
 ```js
 data.eachLayer(function(layer) {
   var props = layer.feature.properties;
@@ -28,13 +33,37 @@ data.eachLayer(function(layer) {
   layer.bindPopup("<b>" + props.metro + ',' + props.state + "</b><br>" + currentYear + "<br>" + '$'+(realGDP*1000000).toLocaleString() + "<br>" + percent.toFixed(2) +'% of total     GDP');
 }
 ```
-This function primarily works to assign values to each circle on the map, then takes said values and binds a popup to each circle. It also uses the calcRadius helper function while determining the circle size—a vital piece of the map’s visualizations.
+
 ### infoWindow
 While this function is quite verbose in that it occupies over 100 lines of the web app’s code, its purpose is only to listen to the user’s mouse activity and show relevant info on the sidebar. infoWindow accomplishes this through use of vanilla Javascript event listeners on mouseover and mouseout for both the main and comparable industry sector datasets.
+
+```js
+data.on('mouseover', function(e){                
+  info.show()
+
+  var props = e.layer.feature.properties;
+  var displayMetro = props.metro;
+  var displayGDP = Number(props[sectorData + currentYear]);
+  $('#info span').text(displayMetro);
+  $('.sectorData span').text((displayGDP*1000000).toLocaleString());
+  $('.percentTotal span').text((displayGDP/props["TOT_" + currentYear]*100).toLocaleString());                              
+  e.layer.setStyle({ fillOpacity: .6 });
+});
+```
+
 ### updateChart
 Just as infoWindow tends to the raw numbers appearing in the sidebar, updateChart works with the graph in the bottom of the info window. I’m not sure why updateChart is in a separate function from infoWindow, since they both appear to be listening for mouse movement and are utilizing the same data.
 Other functions
 There appear to be many other functions currently commented out in the web map’s source. The option to filter map items by GDP was omitted, as well as a legend, a second year-slider for the comparative industry sector, and further chart control. In the UI, the option to choose metropolitan areas from a dropdown menu was removed. While going through the leaflet code, I noticed that a mapbox basemap was specified even though it does not appear on the final map. This could be due to a bad access token, but I appreciated the lack of basemap.
+
+```js
+svg.append("rect")
+  .attr("class", "overlay")
+  .attr("width", width)
+  .attr("height", height)
+  .on("mouseover", function() { focus.style("display", null); })
+  .on("mouseout", function() { focus.style("display", "none"); })
+```
 
 ## MAP ELEMENTS
 Interestingly, this web map does not include very many common map-design elements. Though code for a dynamic legend is included in the source, it is omitted in the final product. A scale bar was never even implemented in the source. This makes sense given the data-driven nature of the map, but some elements would have been nice to contextualize the data.
