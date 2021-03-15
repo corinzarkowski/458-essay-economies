@@ -76,7 +76,8 @@ The author of this web map is Tyler Hegwood, a former GIS graduate student from 
 
 ## Data
 The data used in this web map is publicly available from the United States Bureau of Economic Analysis. The author does not seem to have reformatted it from its original state. The data itself is on GDP of US metropolitan areas sorted by sector, ranging from the years 2001-2013. Today, the same data is released in datasets from 2001-2019. Since this project was created in 2016, and the data from originally individual sets from 2001-2013, one can reasonably assume the data was collected in the years of its release, and the author downloaded it in 2016.
-PICTURE
+
+[Data Source Website](BEA.PNG)
 
 ## Systemic Architecture
 The client-server relations of this project are reasonably straightforward—all the geographic and GDP data is stored via geoJSON, and does not occupy much space, allowing it be entirely stored and accessed simultaneously on the server without external databases. All data is received by the client at once, allowing smooth adjustment of sliders and the map’s scope. The source specifies a Mapbox basemap, which would require the transfer of data between the Mapbox server to the user, but this does not appear in the final project. All vector imagery for map locations is drawn dynamically using leaflet’s setRadius function.
