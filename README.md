@@ -14,9 +14,18 @@ The information provided by Hegwood through his web map serves many possible use
 
 ## Major functions
 A robust tool such as this web map relies on a multitude of dependencies and backend functions. Hegwood styles the entire site using barebones CSS and html; the bulk of his code is found in the vast use of UI listeners and functions controlling the drawing of the map circles themselves.
-[HTML CODE SNIPPET]
 Three primary functions make up the majority of the web app’s composition: updateSymbols, infoWindow, and updateChart. Another large function, drawMap, mostly just takes geoJSON and uses leaflet functions to create the underlying map. The last large function, addUiListeners, makes calls to updateSymbols when sliders or selectors from the sidebar are used.
 ### updateSymbols
+```data.eachLayer(function(layer) {
+            var props = layer.feature.properties;
+            var percent = Number(props[sectorData + currentYear]/props['TOT_'+currentYear])*100;
+            var realGDP = Number(props[sectorData + currentYear]);
+            var radius = calcRadius(realGDP);
+            layer.setRadius(radius);
+            allRadii.push(radius);
+            
+            layer.bindPopup("<b>" + props.metro + ',' + props.state + "</b><br>" + currentYear + "<br>" + '$'+(realGDP*1000000).toLocaleString() + "<br>" + percent.toFixed(2) +'% of total GDP');
+```
 This function primarily works to assign values to each circle on the map, then takes said values and binds a popup to each circle. It also uses the calcRadius helper function while determining the circle size—a vital piece of the map’s visualizations.
 ### infoWindow
 While this function is quite verbose in that it occupies over 100 lines of the web app’s code, its purpose is only to listen to the user’s mouse activity and show relevant info on the sidebar. infoWindow accomplishes this through use of vanilla Javascript event listeners on mouseover and mouseout for both the main and comparable industry sector datasets.
@@ -45,12 +54,12 @@ The client-server relations of this project are reasonably straightforward—all
 While this web app provides robust and detailed tools for both visualizing and analyzing large amounts of data, it is severely lacking in its presentation. One could argue that an aesthetically pleasing design is not necessary in this sort of project, but I would disagree. The color palette and style behind using circles to represent GDP from different sectors is both visually pleasing and effective, but the barebones sidebar layout leaves much to be desired. The text size does not scale, making it nigh unreadable on high resolution monitors, and the app does not support responsive design whatsoever. Data provided in the sidebar is raw with near to no context, and the graph’s axes labels are dark gay on gray—completely unreadable. Even though the circles on the map itself are great for drawing comparison, the lack of legend renders them useless for anything beyond barely preliminary analysis. On the bright side, the dropdown menus for the selection of sectors are both easy to navigate and snappy, even though the labels of each are hard to read on the gray backdrop. The lack of basemap in this web map is interesting. The sheer amount of data and bountiful labels work well to contextualize the map on a broader scale, but someone not familiar with United States geography might suffer from navigation. Since the web map’s source did specify the use of a basemap, one cannot judge the map’s design too much for this though. However, the blue and purple palette for the map circles would be completely impossible to read for those who are colorblind—a glaring accessibility issue.
 
 ## PROS AND CONS
-## PROS (list these)
+### PROS
 - Snappy. 
 - Bug free (I consider the lack of basemap a feature, not a bug)
 - Intuitive for data analysis.
 - Pretty design for the map itself.
-## CONS
+### CONS
 - Sidebar design is lacking.
 - Lack of legend makes contextualization of data on the map itself difficult, even if comparison is easy.
 - Color palette on the map may be bad for colorblind people.
