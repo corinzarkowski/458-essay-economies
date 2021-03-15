@@ -16,15 +16,17 @@ The information provided by Hegwood through his web map serves many possible use
 A robust tool such as this web map relies on a multitude of dependencies and backend functions. Hegwood styles the entire site using barebones CSS and html; the bulk of his code is found in the vast use of UI listeners and functions controlling the drawing of the map circles themselves.
 Three primary functions make up the majority of the web app’s composition: updateSymbols, infoWindow, and updateChart. Another large function, drawMap, mostly just takes geoJSON and uses leaflet functions to create the underlying map. The last large function, addUiListeners, makes calls to updateSymbols when sliders or selectors from the sidebar are used.
 ### updateSymbols
-```data.eachLayer(function(layer) {
-            var props = layer.feature.properties;
-            var percent = Number(props[sectorData + currentYear]/props['TOT_'+currentYear])*100;
-            var realGDP = Number(props[sectorData + currentYear]);
-            var radius = calcRadius(realGDP);
-            layer.setRadius(radius);
-            allRadii.push(radius);
+```js
+data.eachLayer(function(layer) {
+  var props = layer.feature.properties;
+  var percent = Number(props[sectorData + currentYear]/props['TOT_'+currentYear])*100;
+  var realGDP = Number(props[sectorData + currentYear]);
+  var radius = calcRadius(realGDP);
+  layer.setRadius(radius);
+  allRadii.push(radius);
             
-            layer.bindPopup("<b>" + props.metro + ',' + props.state + "</b><br>" + currentYear + "<br>" + '$'+(realGDP*1000000).toLocaleString() + "<br>" + percent.toFixed(2) +'% of total GDP');
+  layer.bindPopup("<b>" + props.metro + ',' + props.state + "</b><br>" + currentYear + "<br>" + '$'+(realGDP*1000000).toLocaleString() + "<br>" + percent.toFixed(2) +'% of total     GDP');
+}
 ```
 This function primarily works to assign values to each circle on the map, then takes said values and binds a popup to each circle. It also uses the calcRadius helper function while determining the circle size—a vital piece of the map’s visualizations.
 ### infoWindow
